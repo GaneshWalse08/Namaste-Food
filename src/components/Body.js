@@ -1,9 +1,11 @@
 import RestrauntCard from "./RestrauntCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import WhatsOnYourMind from "./WhatsOnYourMind";
 
 const Body = () => {
   const [listOfRest, setlistOfRest] = useState([]);
+  const [whatsOnYourMind, setwhatsOnYourMind] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -18,16 +20,33 @@ const Body = () => {
     const json = await data.json();
 
     console.log(json);
-    
-    setlistOfRest(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+
+    setlistOfRest(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants,
+    );
+
+    setwhatsOnYourMind(
+      json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info,
+    );
   };
 
-  if(!listOfRest || listOfRest.length === 0){
-    return (<Shimmer />)
+  if (!listOfRest || listOfRest.length === 0) {
+    return <Shimmer />;
   }
 
   return (
     <div className="body">
+      <div className="Whats-on-your-mind">
+        <h2>What's on your mind?</h2>
+
+        <div className="mind-container">
+          {whatsOnYourMind.map((restraunt) => (
+            <WhatsOnYourMind key={restraunt.id} MindData={restraunt} />
+          ))}
+        </div>
+      </div>
+
       <button
         className="filter-btn"
         onClick={() => {

@@ -2,10 +2,12 @@ import RestrauntCard from "./RestrauntCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import WhatsOnYourMind from "./WhatsOnYourMind";
+import TopRestraunt from "./TopRestraunt";
 
 const Body = () => {
   const [listOfRest, setlistOfRest] = useState([]);
   const [whatsOnYourMind, setwhatsOnYourMind] = useState([]);
+  const [topRest, settopRest] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -29,6 +31,11 @@ const Body = () => {
     setwhatsOnYourMind(
       json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info,
     );
+
+    settopRest(
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants,
+    );
   };
 
   if (!listOfRest || listOfRest.length === 0) {
@@ -43,6 +50,16 @@ const Body = () => {
         <div className="mind-container">
           {whatsOnYourMind.map((restraunt) => (
             <WhatsOnYourMind key={restraunt.id} MindData={restraunt} />
+          ))}
+        </div>
+      </div>
+
+      <div className="top-rest">
+        <h2>Restaurants with online food delivery in Latur</h2>
+
+        <div className="top-rest-cont">
+          {topRest.map((restraunt) => (
+            <TopRestraunt key={restraunt.info?.id} TopData={restraunt.info}/>
           ))}
         </div>
       </div>

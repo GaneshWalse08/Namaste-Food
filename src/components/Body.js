@@ -16,7 +16,7 @@ const Body = () => {
   const fetchData = async () => {
     console.log("fetch started");
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.4091747&lng=76.5603184&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
+      "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.4091747&lng=76.5603184&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
     );
     console.log("fetch finished");
     const json = await data.json();
@@ -38,9 +38,11 @@ const Body = () => {
     );
   };
 
-  if (!listOfRest || listOfRest.length === 0) {
-    return <Shimmer />;
-  }
+  // if (!listOfRest || listOfRest.length === 0) {
+  //   return <Shimmer />;
+  // }
+
+  const isLoading = listOfRest.length === 0;
 
   return (
     <div className="body">
@@ -48,9 +50,17 @@ const Body = () => {
         <h2>What's on your mind?</h2>
 
         <div className="mind-container">
-          {whatsOnYourMind.map((restraunt) => (
+          {/* {whatsOnYourMind.map((restraunt) => (
             <WhatsOnYourMind key={restraunt.id} MindData={restraunt} />
-          ))}
+          ))} */}
+
+          {isLoading
+            ? Array.from({ length: 10 }).map((_, index) => (
+                <div className="shimmer-card-mind" key={index}></div>
+              ))
+            : whatsOnYourMind?.map((restraunt) => (
+                <WhatsOnYourMind key={restraunt.id} MindData={restraunt} />
+              ))}
         </div>
       </div>
 
@@ -59,7 +69,7 @@ const Body = () => {
 
         <div className="top-rest-cont">
           {topRest.map((restraunt) => (
-            <TopRestraunt key={restraunt.info?.id} TopData={restraunt.info}/>
+            <TopRestraunt key={restraunt.info?.id} TopData={restraunt.info} />
           ))}
         </div>
       </div>

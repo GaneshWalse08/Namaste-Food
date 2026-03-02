@@ -87,7 +87,7 @@ body{
   box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
 }
 
-.Shimmer-card {
+.shimmer-card {
   margin-top: 50px;
   width: 300px;
   height: 400px;
@@ -99,7 +99,7 @@ body{
    margin-left: 20px;
 }
 
-.Shimmer-cont {
+.shimmer-cont {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -211,4 +211,68 @@ body{
   font-size: 14px;
   color: #555;
   margin: 3px 0;
+}
+
+.shimmer-cont {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.shimmer-card-mind {
+  min-width: 140px;
+  height: 140px;
+  border-radius: 25px;
+  background: linear-gradient(
+    90deg,
+    #eeeeee 25%,
+    #dddddd 50%,
+    #eeeeee 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.shimmer-card {
+
+  width: 250px;
+  height: 300px;
+  border-radius: 12px;
+  background: linear-gradient(
+    90deg,
+    #eeeeee 25%,
+    #dddddd 50%,
+    #eeeeee 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.login {
+  /* padding: 10px;
+  margin-left: 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: bolder;
+  background-color: rgb(74, 248, 109); */
+
+   padding: 8px 18px;
+  background-color: rgb(13, 239, 58);   /* Swiggy orange style */
+  color: rgb(19, 19, 19);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  margin-left: 15px;
+
+}
+
+.login:hover{
+  transform: scale(1.05);
+}
+
+.login:active {
+  transform: scale(0.98);
 }

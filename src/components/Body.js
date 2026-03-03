@@ -8,6 +8,7 @@ const Body = () => {
   const [listOfRest, setlistOfRest] = useState([]);
   const [whatsOnYourMind, setwhatsOnYourMind] = useState([]);
   const [topRest, settopRest] = useState([]);
+  const [searchText, setsearchText] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -74,7 +75,16 @@ const Body = () => {
         </div>
       </div>
 
-      <button
+      <div className="filter">
+
+        <div className="search">
+          <input type="text" className="search-box" placeholder="Search here"></input>
+          <button className="search-btn" onClick={() => {
+
+          }}>Search</button>
+        </div>
+
+        <button
         className="filter-btn"
         onClick={() => {
           const filteredRest = listOfRest.filter(
@@ -85,6 +95,7 @@ const Body = () => {
       >
         Top Rated Restraunt
       </button>
+      </div>
 
       <div className="res-container">
         {listOfRest.map((restaurant) => (

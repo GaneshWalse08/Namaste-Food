@@ -73,13 +73,16 @@ body{
 }
 
 .filter-btn{
-  padding: 8px;
-  margin: 8px;
-  border-radius: 5px;
-  font-weight: bolder;
-  background-color: azure;
+  padding: 8px 18px;
+  background-color: rgb(13, 239, 58);
+  color: rgb(19, 19, 19);
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
-  transition: 0.3s ease;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  margin: 15px;
 }
 
 .filter-btn:hover{
@@ -274,5 +277,57 @@ body{
 }
 
 .login:active {
+  transform: scale(0.98);
+}
+
+.filter {
+  display: flex;
+  justify-content: center;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+  margin-right: 55px;
+}
+
+.search-box {
+  padding: 10px 14px;
+  width: 250px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s ease;
+  
+}
+
+
+.search-box:focus {
+  border-color: #ff5200;
+  box-shadow: 0 0 5px rgba(255, 82, 0, 0.3);
+}
+
+
+.search-btn {
+  padding: 10px 18px;
+  background-color: #ff5200;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+
+.search-btn:hover {
+  background-color: #e64a00;
+  transform: scale(1.05);
+}
+
+.search-btn:active {
   transform: scale(0.98);
 }

@@ -8,7 +8,7 @@ const Body = () => {
   const [listOfRest, setlistOfRest] = useState([]);
   const [whatsOnYourMind, setwhatsOnYourMind] = useState([]);
   const [topRest, settopRest] = useState([]);
-  const [searchText, setsearchText] = useState("");
+  const [searchText , setsearchText] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -25,17 +25,17 @@ const Body = () => {
     console.log(json);
 
     setlistOfRest(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants,
+      json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants || []
     );
 
     setwhatsOnYourMind(
-      json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info,
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.info || []
     );
 
     settopRest(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants,
+        ?.restaurants || []
     );
   };
 
@@ -78,10 +78,19 @@ const Body = () => {
       <div className="filter">
 
         <div className="search">
-          <input type="text" className="search-box" placeholder="Search here"></input>
-          <button className="search-btn" onClick={() => {
+          <input type="text" className="search-box" placeholder="Search here" value={searchText} onChange={(e)=> {
+            setsearchText(e.target.value);
+          }}></input>
 
-          }}>Search</button>
+          <button className="search-btn" onClick={() => {
+            const filteredRest = listOfRest.filter((res) => (
+             res.info.name.toLowerCase().includes(searchText.toLowerCase())
+            ))
+
+            setlistOfRest(filteredRest);
+          }}>
+            Search
+          </button>
         </div>
 
         <button

@@ -6,9 +6,10 @@ import TopRestraunt from "./TopRestraunt";
 
 const Body = () => {
   const [listOfRest, setlistOfRest] = useState([]);
+  const [filteredRestraunt, setfilteredRestraunt] = useState([]);
   const [whatsOnYourMind, setwhatsOnYourMind] = useState([]);
   const [topRest, settopRest] = useState([]);
-  const [searchText , setsearchText] = useState("");
+  const [searchText, setsearchText] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -25,17 +26,22 @@ const Body = () => {
     console.log(json);
 
     setlistOfRest(
-      json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants || []
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants || [],
+    );
+
+    setfilteredRestraunt(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants || [],
     );
 
     setwhatsOnYourMind(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.info || []
+      json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info || [],
     );
 
     settopRest(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants || []
+        ?.restaurants || [],
     );
   };
 
@@ -76,38 +82,46 @@ const Body = () => {
       </div>
 
       <div className="filter">
-
         <div className="search">
-          <input type="text" className="search-box" placeholder="Search here" value={searchText} onChange={(e)=> {
-            setsearchText(e.target.value);
-          }}></input>
+          <input
+            type="text"
+            className="search-box"
+            placeholder="Search here"
+            value={searchText}
+            onChange={(e) => {
+              setsearchText(e.target.value);
+            }}
+          ></input>
 
-          <button className="search-btn" onClick={() => {
-            const filteredRest = listOfRest.filter((res) => (
-             res.info.name.toLowerCase().includes(searchText.toLowerCase())
-            ))
+          <button
+            className="search-btn"
+            onClick={() => {
+              const filteredRest = listOfRest.filter((res) =>
+                res.info.name.toLowerCase().includes(searchText.toLowerCase()),
+              );
 
-            setlistOfRest(filteredRest);
-          }}>
+              setfilteredRestraunt(filteredRest);
+            }}
+          >
             Search
           </button>
         </div>
 
         <button
-        className="filter-btn"
-        onClick={() => {
-          const filteredRest = listOfRest.filter(
-            (rest) => rest.info.avgRating > 4.2,
-          );
-          setlistOfRest(filteredRest);
-        }}
-      >
-        Top Rated Restraunt
-      </button>
+          className="filter-btn"
+          onClick={() => {
+            const filteredRest = listOfRest.filter(
+              (rest) => rest.info.avgRating > 4.2,
+            );
+            setlistOfRest(filteredRest);
+          }}
+        >
+          Top Rated Restraunt
+        </button>
       </div>
 
       <div className="res-container">
-        {listOfRest.map((restaurant) => (
+        {filteredRestraunt.map((restaurant) => (
           <RestrauntCard key={restaurant.info.id} resData={restaurant} />
         ))}
       </div>

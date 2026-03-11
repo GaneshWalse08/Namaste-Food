@@ -10,6 +10,8 @@ import Error from "./components/Error";
 import Body from "./components/Body";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import RestrauntMenu from "./components/RestrauntMenu";
+// import mockRestaurantMenus from "./utils/mockRestaurantMenus";
 
 const AppLayout = () => {
   return (
@@ -36,6 +38,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/restaurant/:resId",
+        element: <RestrauntMenu />,
       },
     ],
     errorElement: <Error />,

@@ -5,15 +5,37 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
 import Cart from "./Cart";
+import {auth} from "../utils/firebase"
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
   const [reactBtn, setreactBtn] = useState("LogIn");
+  const location = useLocation();
 
   const onlineStatus = useOnlineStatus();
 
   const { loggedInUser } = useContext(UserContext);
 
   const cartItems = useSelector((store) => store.cart.items);
+
+  if(location.pathname === "/login"){
+    return(
+      <div className=" flex p-1.5 justify-between items-center border rounded-lg bg-amber-100 my-3.5-">
+      <div className="logo-cont">
+        <img className="w-20 rounded-b-md" src={logoImg}></img>
+      </div>
+
+      <div className="nav-cont">
+        <ul className="flex gap-5 cursor-pointer font-normal text-lg p-1">
+          <li className="nav-link">
+            {onlineStatus ? "Online 🟢" : "Offline 🔴"}
+          </li>
+          <li className="mr-2">Hello {auth.currentUser?.displayName || "User"} 👋</li>
+        </ul>
+      </div>
+    </div>
+    )
+  }
 
   return (
     <div className=" flex p-1.5 justify-between items-center border rounded-lg bg-amber-100 my-3.5-">
@@ -60,7 +82,7 @@ const Header = () => {
               {reactBtn}
             </button>
           </li>
-          <li>Hello {loggedInUser} !</li>
+          <li>{auth.currentUser?.displayName || "User"} 👋</li>
         </ul>
       </div>
     </div>

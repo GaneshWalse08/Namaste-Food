@@ -3,3 +3,5 @@ export const logoImg = "https://s3.amazonaws.com/cdn.designcrowd.com/blog/39-Foo
 export const ResCardImg = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 
 export const RestaurantMenuAPI = "https://namastedev.com/api/v1/listRestaurantMenu/";
+
+export const SwiggyLogInPageImg = "https://wallpapersok.com/images/file/enjoy-an-explosion-of-flavor-with-this-delicious-plate-of-food-anl1yr892h6ccjeb.jpg";
